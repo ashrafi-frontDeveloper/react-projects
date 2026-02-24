@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import AddTodoModal from './components/AddTodoModal/AddTodoModal'
@@ -5,12 +6,32 @@ import Todo from './components/Todo/Todo'
 import './App.css'
 
 export default function App() {
+
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [todos, setTodos] = useState([])
+
+  const addTodo = (title, description, isImportant) => {
+
+    // Validation ✔️
+
+    const newTodo = {
+      id: crypto.randomUUID(),
+      title,
+      description,
+      isImportant,
+      isCompleted: false,
+    }
+
+    setTodos([...todos, newTodo])
+    setIsAddModalOpen(false)
+  }
+
   return (
     <>
       <Header /> 
       
       <main className="container pb-25">
-        <div id="headline" className="space-y-3">
+        <div id="headline" className="space-y-3 mt-10">
           <h1 className="title">
             <img src="./public/images/hourglass.png" className="size-8" />
             <span> مدیریت و برنامه ریزی </span>
@@ -46,7 +67,7 @@ export default function App() {
               </div>
             </div>
 
-            <button id="open-dialog" cla>
+            <button id="open-dialog" onClick={() => setIsAddModalOpen(true)}>
               <span> ایجاد جدید </span>
               <div className="btn-divider"></div>
               <span>
@@ -59,7 +80,9 @@ export default function App() {
         <section id="tasks" className="space-y-30 mt-5">
           <div className="space-y-5">
             <p className="text-sm">تسک های موجود:</p>
-            <Todo />
+            { todos.map((todo) => (
+                <Todo key={todo.id} {...todo} />
+            ))}
           </div>
 
           <div className="space-y-5">
@@ -71,6 +94,12 @@ export default function App() {
       </main>
 
       {/* <AddTodoModal /> */}
+      {isAddModalOpen && (
+        <AddTodoModal 
+          onClose = {() => setIsAddModalOpen(false)}
+          addTodoHandler={addTodo}
+           />
+      )}
 
       <Footer />
     </>

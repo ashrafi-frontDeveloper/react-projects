@@ -1,21 +1,20 @@
-function Todo({ title, description }) {
+function Todo({ title, description, isImportant, isCompleted }) {
   return (
     <div className="space-y-0.5">
       <article className="task-card">
         <div className="task-content">
           <div>
-            <h3>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت</h3>
+            <h3>{title}</h3>
             <p className="task-desc">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-              استفاده از طراحان گرافیک است، چاپگرها و
+              {description}
             </p>
           </div>
         </div>
 
         <div className="moderate">
           <div className="flex items-center **:min-w-max gap-2">
-            <span className="status-label completed"> تکمیل شده </span>
-            <span className="priority code-1"> مهم </span>
+            {isCompleted && (<span className="status-label completed"> تکمیل شده </span>)}
+            {isImportant && (<span className="priority code-1"> مهم </span>)}
           </div>
           <div className="moderate-btns">
             <button className="complete-task">
