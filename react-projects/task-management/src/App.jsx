@@ -100,7 +100,6 @@ export default function App() {
           addTodoHandler={addTodo}
            />
       )}
-
       <Footer />
     </>
   )

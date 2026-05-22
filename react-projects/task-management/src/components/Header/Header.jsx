@@ -8,7 +8,7 @@ function Header() {
           {" "}
           خانه{" "}
         </a>
-        <a className="nav-item" href="https://sabzlearn.com">
+        <a className="nav-item" href="#">
           {" "}
           دوره های سبزلرن{" "}
         </a>
@@ -26,7 +26,7 @@ function Header() {
         </a>
       </div>
       <div>
-        <a href="https://sabzlearn.ir">
+        <a href="#">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="absolute right-0 left-0 mx-auto md:static h-10 md:h-10 lg:h-10 shrink-0"
