@@ -1,4 +1,4 @@
-function Todo({ title, description, isImportant, isCompleted }) {
+function Todo({id, title, description, isImportant, isCompleted, onDo, onRemove }) {
   return (
     <div className="space-y-0.5">
       <article className="task-card">
@@ -17,10 +17,10 @@ function Todo({ title, description, isImportant, isCompleted }) {
             {isImportant && (<span className="priority code-1"> مهم </span>)}
           </div>
           <div className="moderate-btns">
-            <button className="complete-task">
+            <button className="complete-task" onClick={() => onDo(id)}>
               <i className="fa-solid fa-circle-check"></i>
             </button>
-            <button className="undone-btn">
+            <button className="undone-btn" onClick={() => onRemove(id)}>
               <i className="fa-solid fa-xmark"></i>
             </button>
           </div>

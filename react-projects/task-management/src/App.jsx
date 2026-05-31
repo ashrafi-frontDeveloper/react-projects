@@ -19,11 +19,28 @@ export default function App() {
       title,
       description,
       isImportant,
-      isCompleted: false,
+      isCompleted: false, 
     }
 
     setTodos([...todos, newTodo])
     setIsAddModalOpen(false)
+  } 
+
+  const doTodo = id => {
+    const updatedTodos = todos.map((todo) => {
+        if (todo.id == id) {
+          todo.isCompleted = true;
+        }
+        return todo;
+      })
+
+    setTodos(updatedTodos)
+  }
+
+  const removeTodo = id => {
+    const updatedTodos = todos.filter((todo) => todo.id != id)
+
+    setTodos(updatedTodos)
   }
 
   return (
@@ -33,7 +50,7 @@ export default function App() {
       <main className="container pb-25">
         <div id="headline" className="space-y-3 mt-10">
           <h1 className="title">
-            <img src="./public/images/hourglass.png" className="size-8" />
+            <img src="images/hourglass.png" className="size-8" />
             <span> مدیریت و برنامه ریزی </span>
           </h1>
           <p className="max-w-[750px] text-zinc-700 text-sm font-Vazir-Medium!">
@@ -81,13 +98,19 @@ export default function App() {
           <div className="space-y-5">
             <p className="text-sm">تسک های موجود:</p>
             { todos.map((todo) => (
-                <Todo key={todo.id} {...todo} />
+                <Todo key={todo.id} {...todo} onDo={doTodo} onRemove={removeTodo} />
             ))}
           </div>
 
           <div className="space-y-5">
             <p className="text-sm">تسک‌های تکمیل‌شده</p>
-            <Todo />
+            {
+              todos
+                .filter(todo => todo.isCompleted)
+                .map((todo) => (
+                  <Todo key={todo.id} {...todo} onDo={doTodo} onRemove={removeTodo} />
+                ))
+            }
           </div>
 
         </section>
