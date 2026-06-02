@@ -1,4 +1,4 @@
-function Product({ id, title, description, price, img }) {
+function Product({ id, title, description, price, img , addToCart }) {
   return (
     <article className="product-card">
       <header className="product-header">
@@ -38,7 +38,7 @@ function Product({ id, title, description, price, img }) {
                 <button className="bookmark-btn">
                   افزودن به علاقه مندی‌ها
                 </button>
-                <button className="add-to-basket">افزودن به سبد خرید</button>
+                <button className="add-to-basket" onClick={() => addToCart(id)}>افزودن به سبد خرید</button>
               </div>
             </div>
           </div>

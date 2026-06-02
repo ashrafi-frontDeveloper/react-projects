@@ -1,6 +1,6 @@
 import "./Navigation.css";
 
-function Navigation() {
+function Navigation({ cart, removeProducts }) {
   return (
     <div id="navigation">
       <button className="inline-flex justify-center w-full px-4 h-[37.7px]! text-sm font-medium leading-5 bg-black transition duration-150 ease-in-out text-white border border-gray-300/10 rounded-md focus:outline-none focus:border-blue-300/20 active:bg-gray-800">
@@ -138,53 +138,66 @@ function Navigation() {
             <span>
               <i className="fa-solid fa-cart-shopping"></i>
             </span>
-            <span className="badge"> 1 </span>
+            <span className="badge"> {cart.length} </span>
           </button>
         </span>
         <div className="hidden dropdown-menu">
           <div className="dropdown-popup" role="menu">
             <div className="px-4 total-price-parent py-3">
               <p className="text-sm leading-5">سبد خرید</p>
-              <span id="product-count">(0)</span>
+              <span id="product-count">({cart.length})</span>
             </div>
             <div className="normal-padding">
-              <article tabindex="1" className="basket-product">
-                <div className="basket-product.content">
-                  <div className="basket-product.cover">
-                    <img
-                      src="./public/images/20-library.png"
-                      className="size-full object-cover"
-                      alt=""
-                    />
+              {
+                cart.length === 0 ? (
+                  <div className="empty-cart-message">
+                    🛒 چیزی در سبد خرید نداریم.
                   </div>
-                  <div className="basket-product-content.details">
-                    <div>
-                      <p className="basket-product-title">دوره متخصص ری‌اکت</p>
-                      <p className="basket-product-desc">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                        چاپ، و
-                      </p>
-                    </div>
-                    <div className="basket-product.footer">
-                      <div className="emerald-price">
-                        <span>600,000</span>
-                        <span>ت</span>
+                ) : (
+                  cart.map(product => (
+                    <article key={product.id} id={product.id} tabIndex="1" className="basket-product">
+                      <div className="basket-product.content">
+                        <div className="basket-product.cover">
+                          <img
+                            src={product.img}
+                            className="size-full object-cover"
+                            alt=""
+                          />
+                        </div>
+                        <div className="basket-product-content.details">
+                          <div>
+                            <p className="basket-product-title">{product.title}</p>
+                            <p className="basket-product-desc">
+                              {product.description}
+                            </p>
+                          </div>
+                          <div className="basket-product.footer">
+                            <div className="emerald-price">
+                              <span>{product.price.toLocaleString()}</span>
+                              <span>ت</span>
+                            </div>
+                            <button className="red-text">
+                              <i className="fa-solid fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <button className="red-text">
-                        <i className="fa-solid fa-trash"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </article>
+                    </article>
+                  ))
+                )
+              }
             </div>
             <div className="content-between">
-              <button className="clear-button">پاکسازی سبد خرید</button>
+              <button className="clear-button" onClick={() => removeProducts()}>پاکسازی سبد خرید</button>
               <div className="total-price-parent">
                 <span> مبلغ کل: </span>
                 <div className="flex items-center">
                   <span className="text-lg text-emerald-600 font-Vazir-Bold!">
-                    600,000
+                    {
+                      cart
+                        .reduce((prev, curr) => prev + curr.price, 0)
+                        .toLocaleString()
+                    }
                   </span>
                   <span className="text-sm text-emerald-500">ت</span>
                 </div>

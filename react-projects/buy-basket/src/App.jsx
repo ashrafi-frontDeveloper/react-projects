@@ -7,7 +7,19 @@ import productsData from "./../data/products.js";
 import Product from "./components/Product/Product";
 
 function App() {
-  const [products] = useState(productsData);
+  const [products] = useState(productsData); 
+  const [cart, setCart] = useState([])
+
+  const addToCart = (id) => {
+    const mainProduct = products.find(product => product.id == id)
+
+    if(mainProduct)
+    setCart([...cart, mainProduct])
+  }
+
+  const removeProducts = () => {
+    setCart([])
+  }
 
   return (
     <>
@@ -18,11 +30,11 @@ function App() {
         className="container mx-auto grid grid-cols-4 gap-5"
       >
         {products.map((product) => (
-          <Product key={product.id} {...product} />
+          <Product key={product.id} {...product} addToCart={addToCart} />
         ))}
       </section>
 
-      <Navigation />
+      <Navigation cart={cart} removeProducts={removeProducts} />
     </>
   );
 }
