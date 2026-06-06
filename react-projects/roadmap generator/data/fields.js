@@ -7,13 +7,13 @@ export default [
         id: crypto.randomUUID(),
         name: "HTML",
         step: "1",
-        image: "/images/postgresq1.png",
+        image: "/images/html.jpg",
       },
       {
         id: crypto.randomUUID(),
         name: "CSS",
         step: "2",
-        image: "/images/vue.js.png",
+        image: "/images/css.png",
       },
       {
         id: crypto.randomUUID(),
@@ -25,13 +25,13 @@ export default [
         id: crypto.randomUUID(),
         name: "React",
         step: "4",
-        image: "/images/react.js.png",
+        image: "/images/reactjs.jpg",
       },
       {
         id: crypto.randomUUID(),
         name: "Vue.js",
         step: "5",
-        image: "/images/vue.js.png",
+        image: "/images/vuejs.png",
       },
       {
         id: crypto.randomUUID(),
