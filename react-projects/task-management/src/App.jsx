@@ -3,13 +3,22 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Todo from "./components/Todo/Todo";
 import AddTodoModal from "./components/AddTodoModal/AddTodoModal";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import NoTodo from "./components/NoTodo/NoTodo";
 
 function App() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    const localTodos = localStorage.getItem("todos")
+
+    if (localTodos) {
+      setTodos(JSON.parse(localTodos))
+    }
+
+  }, [])
 
   const addTodo = (title, description, isImportant) => {
     // Validation ✅
@@ -25,6 +34,7 @@ function App() {
     setTodos([...todos, newTodo]);
 
     setIsAddModalOpen(false);
+    localStorage.setItem("todos", JSON.stringify([...todos, newTodo]))
   };
 
   const doTodo = (id) => {
@@ -37,6 +47,7 @@ function App() {
     });
 
     setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos))
   };
 
   const removeTodo = (id) => {
@@ -76,7 +87,7 @@ function App() {
             <div className="dropdown">
               <input id="dd-toggle" type="checkbox" hidden />
 
-              <label className="dd-btn" for="dd-toggle">
+              <label className="dd-btn" htmlFor="dd-toggle">
                 <span>
                   نمایش{" "}
                   {filter === "all"
@@ -91,21 +102,21 @@ function App() {
               <div className="dropdown_menu" role="menu">
                 <div className="py-1">
                   <label
-                    for="dd-toggle"
+                    htmlFor="dd-toggle"
                     className="menu-item"
                     onClick={() => setFilter("all")}
                   >
                     همه
                   </label>
                   <label
-                    for="dd-toggle"
+                    htmlFor="dd-toggle"
                     className="menu-item"
                     onClick={() => setFilter("completed")}
                   >
                     تکمیل شده ها
                   </label>
                   <label
-                    for="dd-toggle"
+                    htmlFor="dd-toggle"
                     className="menu-item"
                     onClick={() => setFilter("not-completed")}
                   >

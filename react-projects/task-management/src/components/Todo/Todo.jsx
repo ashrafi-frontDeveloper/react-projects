@@ -1,4 +1,19 @@
+import { useEffect } from "react";
+
 function Todo({id, title, description, isImportant, isCompleted, onDo, onRemove }) {
+
+  useEffect(() => {
+    console.log(`[Todo.jsx Mounting] - ${title}`)
+
+    return () => {
+      console.log(`[Todo.jsx UnMounting] - ${title}`)
+    }
+  }, [])
+
+    useEffect(() => {
+      console.log(`[Todo.jsx Updating] - ${title}`)
+    }, [isCompleted])
+
   return (
     <div className="space-y-0.5">
       <article className="task-card">
