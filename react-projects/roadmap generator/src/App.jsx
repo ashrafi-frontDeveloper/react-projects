@@ -1,23 +1,24 @@
 import "./App.css";
 
 import fields from "./../data/fields.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Step from "./components/Step/Step.jsx";
 
 function App() {
   const [programmingFields] = useState(fields);
   const [field, setField] = useState("-1");
   const [steps, setSteps] = useState([]);
-
-  const findFieldSteps = (newField) => {
-    if (newField !== "-1") {
+  
+  useEffect(() => {
+    
+    if (field !== "-1") {
       const mainField = programmingFields.find(
-        (field) => field.id === newField
+        (item) => item.id === field
       );
-
-      setSteps(mainField.technologies);
+  
+      setSteps(mainField?.technologies);
     }
-  };
+  }, [field])
 
   return (
     <>
@@ -32,7 +33,6 @@ function App() {
               value={field}
               onChange={(event) => {
                 setField(event.target.value);
-                findFieldSteps(event.target.value);
               }}
             >
               <option value="-1">لطفا فیلد مورد نظر را انتخاب نمایید</option>
