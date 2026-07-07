@@ -5,12 +5,13 @@ import Users from "./pages/Users/page";
 import Tickets from "./pages/Tickets/page";
 import TicketDetails from "./pages/TicketDetails/page";
 import Comments from "./pages/Comments/page";
+import clsx from "clsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <div>
+      <div className={clsx("text-center p-4")}>
         Application Layout
         <Outlet />
       </div>
