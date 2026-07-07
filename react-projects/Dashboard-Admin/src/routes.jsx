@@ -7,6 +7,8 @@ import TicketDetails from "./pages/TicketDetails/page";
 import Comments from "./pages/Comments/page";
 import clsx from "clsx";
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",
