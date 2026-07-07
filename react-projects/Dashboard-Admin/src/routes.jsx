@@ -5,6 +5,7 @@ import Users from "./pages/Users/page";
 import Tickets from "./pages/Tickets/page";
 import TicketDetails from "./pages/TicketDetails/page";
 import Comments from "./pages/Comments/page";
+import { DashboardLayout } from "./components/layouts/DashboardLayout";
 import clsx from "clsx";
 
 
@@ -12,12 +13,7 @@ import clsx from "clsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div className={clsx("text-center p-4")}>
-        Application Layout
-        <Outlet />
-      </div>
-    ),
+    element: <DashboardLayout /> ,
     children: [
       {
         index: true,
