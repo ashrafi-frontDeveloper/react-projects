@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SectionTitle from "../../components/common/SectionTitle";
+import { Summaries } from "../../features/Summaries/Summaries";
 import { useNavigate } from "react-router";
 
 const Home = () => {
@@ -31,7 +32,7 @@ const Home = () => {
   return (
     <>
       <SectionTitle title="داشبورد" buttons={<CTAButton />} />
-      {/* <Summaries /> */}
+      <Summaries />
 
       <div className="">
         {/* <DetailsCharts />
