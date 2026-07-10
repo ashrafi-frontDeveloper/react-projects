@@ -1,27 +1,26 @@
 import { Outlet } from "react-router";
-import { Sidebar } from "../../features/Sidebar/Sidebar";
+import Sidebar from "../../features/Sidebar/Sidebar";
 import Topbar from "../../features/Topbar/Topbar";
 import BackgroundOverlay from "../common/BackgroundOverlay";
 
-
-export const DashboardLayout = () => {
+const DashboardLayout = () => {
   return (
     <main id="root" className="flex">
-        <Sidebar />
+      <Sidebar />
 
-        <section className="grow *:px-6">
-            <Topbar />
+      <section className="grow *:px-6">
+        <Topbar />
 
-            <div id="content" className="mt-6 container mx-auto">
-                <div className="relative z-10">
-                    <Outlet />
-                </div>
+        <div id="content" className="mt-6 container mx-auto">
+          <div className="relative z-10">
+            <Outlet />
+          </div>
 
-                <BackgroundOverlay />
-            </div>
-
-        </section>
-
+          <BackgroundOverlay />
+        </div>
+      </section>
     </main>
-  )
-}
+  );
+};
+
+export default DashboardLayout;

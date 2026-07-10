@@ -7,6 +7,7 @@ import {
   YAxis,
 } from "recharts";
 import { generateChartData } from "../../utils/home";
+import CustomTooltip from "./components/CustomTooltip";
 
 const DetailsCharts = () => {
   const data = generateChartData({
@@ -17,7 +18,7 @@ const DetailsCharts = () => {
   });
 
   return (
-    <div className="p-5 space-y-10 bg-white border rounded-xl primary-border-color my-7">
+    <div className="p-5 space-y-10 bg-white border rounded-xl primary-border-color">
       <p className="text-lg">آمار کلی داشبورد</p>
 
       <div className="w-full h-[400px]">
@@ -26,7 +27,7 @@ const DetailsCharts = () => {
             <Bar dataKey="value" fill="#8884d8" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip />
+            <Tooltip content={CustomTooltip} />
           </BarChart>
         </ResponsiveContainer>
       </div>

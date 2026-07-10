@@ -1,18 +1,21 @@
-import { generateSummaries } from "../../utils/home"
-import SummaryCard from "./components/SummaryCard"
+import { generateSummaries } from "../../utils/home";
+import SummaryCard from "./components/SummaryCard";
 
-export const Summaries = () => {
-
+const Summaries = () => {
   const summaries = generateSummaries({
-    productsLength: 2,
-    usersLength: 77,
-    ticketsLength: 36,
+    productsLength: 4,
+    ticketsLength: 80,
     adminsLength: 3,
-  })
+    usersLength: 200,
+  });
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:md:grid-cols-4 gap-3 mt-7">
-      {summaries.map(summary => <SummaryCard key={summary.id} {...summary} />)}
+    <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-5 mt-6">
+      {summaries.map((summary) => (
+        <SummaryCard key={summary.id} {...summary} />
+      ))}
     </div>
-  )
-}
+  );
+};
+
+export default Summaries;

@@ -5,15 +5,12 @@ import Users from "./pages/Users/page";
 import Tickets from "./pages/Tickets/page";
 import TicketDetails from "./pages/TicketDetails/page";
 import Comments from "./pages/Comments/page";
-import { DashboardLayout } from "./components/layouts/DashboardLayout";
-import clsx from "clsx";
-
-
+import DashboardLayout from "./components/layouts/DashboardLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <DashboardLayout /> ,
+    element: <DashboardLayout />,
     children: [
       {
         index: true,

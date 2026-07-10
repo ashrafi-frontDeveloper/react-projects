@@ -1,3 +1,4 @@
+import React from "react";
 import { HiSearch } from "react-icons/hi";
 
 const Search = () => {

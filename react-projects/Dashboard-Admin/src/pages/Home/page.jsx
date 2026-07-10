@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SectionTitle from "../../components/common/SectionTitle";
-import { Summaries } from "../../features/Summaries/Summaries";
 import { useNavigate } from "react-router";
+import Summaries from "../../features/Summaries/Summaries";
 import DetailsCharts from "../../features/DetailsCharts/DetailsCharts";
 import LastProductTable from "../../features/LastProductTable/LastProductTable";
 
@@ -33,13 +33,14 @@ const Home = () => {
 
   return (
     <>
-      <SectionTitle title="داشبورد" buttons={<CTAButton />} />
+      <SectionTitle title="داشبورد" Buttons={<CTAButton />} />
       <Summaries />
 
-      <div className="">
+      <div className="mt-20 pb-10 space-y-10">
         <DetailsCharts />
+
         <LastProductTable />
-        {/* <QuickOverview />  */}
+        {/*<QuickOverview /> */}
       </div>
     </>
   );

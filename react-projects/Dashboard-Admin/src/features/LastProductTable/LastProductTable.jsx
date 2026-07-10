@@ -1,42 +1,49 @@
 import { Link } from "react-router";
-import Table from "../../components/common/Table/Table";
-import TableHead from "../../components/common/Table/elements/TableHead";
-import TableHeadCell from "../../components/common/Table/elements/TableHeadCell";
-import TableCell from "../../components/common/Table/elements/TableHead";
-import TableBody from "../../components/common/Table/elements/TableBody";
-import TableRow from "../../components/common/Table/elements/TableRow";
+import Table from "./../../components/common/Table/Table";
+import TableHead from "./../../components/common/Table/elements/TableHead";
+import TableHeadCell from "./../../components/common/Table/elements/TableHeadCell";
+import TableBody from "./../../components/common/Table/elements/TableBody";
+import TableRow from "./../../components/common/Table/elements/TableRow";
 import { MdOpenInNew } from "react-icons/md";
-import { productsTableHeadRow } from "../../data/products";
-import { products } from "../../data/products";
+import { products, productsTableHeadRow } from "../../data/products";
+import TableCell from "../../components/common/Table/elements/TableCell";
 import clsx from "clsx";
-import { FcDeleteDatabase } from "react-icons/fc";
-import RemoveProductIcon from "./components/RemoveProductIcon"
-import ChangeVisibilityIcon from "./components/ChangeVisibilityIcon"
-import EditProducttIcon from "./components/EditProducttIcon"
+import RemoveProductIcon from "./components/RemoveProductIcon";
+import ChangeVisibilityIcon from "./components/ChangeVisibilityIcon";
+import EditProducttIcon from "./components/EditProducttIcon";
+import { useState } from "react";
 
 const LastProductTable = () => {
+  const [lastProducts, setLastProducts] = useState([...products]);
+
   const Buttons = () => {
-    return <Link 
-              to={"/products"}
-              className=" underline hover:text-blue-400 text-blue-500 flex-center gap-1">
-                <span className="">لیست محصولات</span>
-                <MdOpenInNew />
-            </Link>;
+    return (
+      <Link
+        to={"/products"}
+        className="underline hover:text-blue-400 text-blue-500 flex-center gap-1"
+      >
+        <span>صفحه محصولات</span>
+        <MdOpenInNew />
+      </Link>
+    );
+  };
+
+  const removeProduct = (id) => {
+    const newProducts = lastProducts.filter((product) => product.id !== id);
+    setLastProducts(newProducts);
   };
 
   return (
     <div>
       <Table header={{ title: "لیست محصولات", Buttons: Buttons }}>
         <TableHead>
-          {
-            productsTableHeadRow.map((row) => (
-              <TableHeadCell key={row}>{row}</TableHeadCell>
-            ))
-          }
+          {productsTableHeadRow.map((row) => (
+            <TableHeadCell key={row}>{row}</TableHeadCell>
+          ))}
         </TableHead>
 
         <TableBody>
-          {products.map((product) => (
+          {lastProducts.map((product) => (
             <TableRow key={product.id}>
               <TableCell>{product.id.slice(0, 10)}...</TableCell>
               <TableCell>{product.title}</TableCell>
@@ -51,14 +58,16 @@ const LastProductTable = () => {
                 </p>
               </TableCell>
               <TableCell>
-                <span>{product.price.toLocaleString("fa-IR")}</span>
-                <span className="">تومان</span>
+                <span>{product.price.toLocaleString("fa-IR")}</span> تومان
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">
-                  <RemoveProductIcon />
-                  <ChangeVisibilityIcon />
-                  <EditProducttIcon />
+                  <RemoveProductIcon
+                    product={product}
+                    handler={removeProduct}
+                  />
+                  <ChangeVisibilityIcon product={product} />
+                  <EditProducttIcon product={product} />
                 </div>
               </TableCell>
             </TableRow>
