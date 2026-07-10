@@ -1,7 +1,5 @@
-import React from "react";
-
-const TableHeadCell = () => {
-  return <div>TableHeadCell</div>;
+const TableHeadCell = ({ children }) => {
+  return <div>{children}</div>;
 };
 
 export default TableHeadCell;

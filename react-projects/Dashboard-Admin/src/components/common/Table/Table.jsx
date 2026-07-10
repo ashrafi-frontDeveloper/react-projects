@@ -5,7 +5,7 @@ const Table = ({
   children,
 }) => {
   return (
-    <div className="mt-10 border min-w-full! bg-white primary-border-color rounded-xl overflow-hidden">
+    <div className="my-10 border min-w-full! bg-white primary-border-color rounded-xl overflow-hidden">
       <TableHeader header={header} />
       <div>{children}</div>
     </div>

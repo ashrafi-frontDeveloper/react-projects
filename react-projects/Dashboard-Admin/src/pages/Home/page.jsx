@@ -3,7 +3,7 @@ import SectionTitle from "../../components/common/SectionTitle";
 import { Summaries } from "../../features/Summaries/Summaries";
 import { useNavigate } from "react-router";
 import DetailsCharts from "../../features/DetailsCharts/DetailsCharts";
-import { LastProductTable } from "../../features/LastProductTable/LastProductTable";
+import LastProductTable from "../../features/LastProductTable/LastProductTable";
 
 const Home = () => {
   const [isRedirecting, setIsRedirecting] = useState(false);
