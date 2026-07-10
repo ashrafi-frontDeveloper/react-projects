@@ -33,6 +33,16 @@ const LastProductTable = () => {
     setLastProducts(newProducts);
   };
 
+  const changeProductVisibility = (id) => {
+    const newProducts = lastProducts.map((product) => {
+      return product.id === id
+        ? { ...product, isPublished: !product.isPublished }
+        : { ...product };
+    });
+
+    setLastProducts(newProducts);
+  };
+
   return (
     <div>
       <Table header={{ title: "لیست محصولات", Buttons: Buttons }}>
@@ -66,7 +76,10 @@ const LastProductTable = () => {
                     product={product}
                     handler={removeProduct}
                   />
-                  <ChangeVisibilityIcon product={product} />
+                  <ChangeVisibilityIcon
+                    product={product}
+                    handler={changeProductVisibility}
+                  />
                   <EditProducttIcon product={product} />
                 </div>
               </TableCell>

@@ -1,4 +1,9 @@
 const ModalFooter = ({ onClose, onSubmit }) => {
+  const submitHandler = () => {
+    onSubmit();
+    onClose();
+  };
+
   return (
     <div className="text-sm text-[#666D80] select-none flex items-center gap-2">
       <button
@@ -9,7 +14,7 @@ const ModalFooter = ({ onClose, onSubmit }) => {
       </button>
 
       <button
-        onClick={onSubmit}
+        onClick={submitHandler}
         className="flex items-center gap-1 cursor-pointer primary-bg px-4 py-2 rounded-lg border primary-border-color"
       >
         <span>تایید</span>
