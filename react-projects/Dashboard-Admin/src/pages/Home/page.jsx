@@ -3,7 +3,8 @@ import SectionTitle from "../../components/common/SectionTitle";
 import { useNavigate } from "react-router";
 import Summaries from "../../features/Summaries/Summaries";
 import DetailsCharts from "../../features/DetailsCharts/DetailsCharts";
-import LastProductTable from "../../features/LastProductTable/LastProductTable";
+import ProductsTable from "../../features/ProductsTable/ProductsTable";
+import QuickOverview from "../../features/QuickOverview/QuickOverview";
 
 const Home = () => {
   const [isRedirecting, setIsRedirecting] = useState(false);
@@ -39,8 +40,8 @@ const Home = () => {
       <div className="mt-20 pb-10 space-y-10">
         <DetailsCharts />
 
-        <LastProductTable />
-        {/*<QuickOverview /> */}
+        <ProductsTable />
+        <QuickOverview />
       </div>
     </>
   );
