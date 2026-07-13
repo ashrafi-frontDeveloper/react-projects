@@ -8,7 +8,7 @@ const LastUsers = () => {
     <div className="col-span-2 max-h-max">
       <SectionTitle title="آخرین کاربران" />
 
-      <div>
+      <div className="mt-5">
         {users.slice(-5).map((user) => (
           <UserCard key={user.id} {...user} />
         ))}
