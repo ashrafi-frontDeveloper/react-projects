@@ -6,9 +6,10 @@ import ProductTableView from "./../../features/ProductsView/ProductsTableView";
 import ProductsGridView from "./../../features/ProductsView/ProductsGridView";
 import Modal from "./../../components/common/Modal";
 import AddProductFields from "../../features/ProductsTable/components/AddProductFields";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const Products = () => {
-  const [layoutType, setLayoutType] = useState("TABLE"); // or GRID
+  const [layoutType, setLayoutType] = useLocalStorage("layout", "TABLE"); // or GRID
   const [allProducts, setAllProducts] = useState([...products]);
   const [paginatedProducts, setPaginatedProducts] = useState([]);
   const [newProduct, setNewProduct] = useState({
@@ -25,6 +26,7 @@ const Products = () => {
     const layout = layoutType === "TABLE" ? "GRID" : "TABLE";
     setLayoutType(layout);
   };
+
 
   const createNewProduct = () => {
     setAllProducts([...allProducts, newProduct])
