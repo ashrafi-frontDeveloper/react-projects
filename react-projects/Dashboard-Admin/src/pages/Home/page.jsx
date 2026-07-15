@@ -6,10 +6,12 @@ import DetailsCharts from "../../features/DetailsCharts/DetailsCharts";
 import ProductsTable from "../../features/ProductsTable/ProductsTable";
 import QuickOverview from "../../features/QuickOverview/QuickOverview";
 import useToggle from "../../hooks/useToggle";
+import useTitle from "../../hooks/useTite";
 
 const Home = () => {
 
   const [isRedirecting, toggle] = useToggle(false)
+  useTitle("Home")
 
   const navigate = useNavigate();
 
