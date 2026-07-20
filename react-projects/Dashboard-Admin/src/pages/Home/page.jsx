@@ -1,4 +1,3 @@
-import { useState } from "react";
 import SectionTitle from "../../components/common/SectionTitle";
 import { useNavigate } from "react-router";
 import Summaries from "../../features/Summaries/Summaries";
@@ -6,12 +5,9 @@ import DetailsCharts from "../../features/DetailsCharts/DetailsCharts";
 import ProductsTable from "../../features/ProductsTable/ProductsTable";
 import QuickOverview from "../../features/QuickOverview/QuickOverview";
 import useToggle from "../../hooks/useToggle";
-import useTitle from "../../hooks/useTite";
 
 const Home = () => {
-
-  const [isRedirecting, toggle] = useToggle(false)
-  useTitle("Home")
+  const [isRedirecting, toggle] = useToggle(false);
 
   const navigate = useNavigate();
 

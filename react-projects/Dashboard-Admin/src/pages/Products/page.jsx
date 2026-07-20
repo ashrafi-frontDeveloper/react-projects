@@ -1,17 +1,17 @@
 import { CiGrid41, CiViewTable } from "react-icons/ci";
 import SectionTitle from "./../../components/common/SectionTitle";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { products } from "./../../data/products";
 import ProductTableView from "./../../features/ProductsView/ProductsTableView";
 import ProductsGridView from "./../../features/ProductsView/ProductsGridView";
 import Modal from "./../../components/common/Modal";
 import AddProductFields from "../../features/ProductsTable/components/AddProductFields";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import useTitle from "../../hooks/useTite";
+import AuthContext from "../../context/auth";
 
 const Products = () => {
-  useTitle("Products")
-  const [layoutType, setLayoutType] = useLocalStorage("layout", "TABLE"); // or GRID
+  const { user, login, logout } = useContext(AuthContext);
+  const [layoutType, setLayoutType] = useLocalStorage("layout", "TABLE");
   const [allProducts, setAllProducts] = useState([...products]);
   const [paginatedProducts, setPaginatedProducts] = useState([]);
   const [newProduct, setNewProduct] = useState({
@@ -29,9 +29,8 @@ const Products = () => {
     setLayoutType(layout);
   };
 
-
   const createNewProduct = () => {
-    setAllProducts([...allProducts, newProduct])
+    setAllProducts([...allProducts, newProduct]);
 
     setNewProduct({
       id: crypto.randomUUID(),
@@ -68,6 +67,7 @@ const Products = () => {
   return (
     <>
       <SectionTitle title="لیست محصولات" Buttons={Buttons} />
+      <button onClick={() => logout()}>Logout</button>
 
       <section className="mt-10 w-full! min-w-full!">
         {layoutType === "TABLE" ? (

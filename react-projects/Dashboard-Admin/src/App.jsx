@@ -1,12 +1,15 @@
 import { RouterProvider } from "react-router";
 import router from "./routes";
 import { ScrollRestoration } from "react-router";
+import AuthProvider from "./context/AuthProvider";
 
 const App = () => {
   return (
-    <RouterProvider router={router}>
-      <ScrollRestoration />
-    </RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}>
+        <ScrollRestoration />
+      </RouterProvider>
+    </AuthProvider>
   );
 };
 

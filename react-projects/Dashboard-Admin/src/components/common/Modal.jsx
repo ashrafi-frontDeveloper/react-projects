@@ -1,12 +1,10 @@
 import clsx from "clsx";
-import { useState } from "react";
 import { BiX } from "react-icons/bi";
 import ModalFooter from "./ModalFooter";
 import useToggle from "../../hooks/useToggle";
 
 const Modal = ({ Trigger, children, title, onSubmit }) => {
-
-  const [isOpen, toggle] = useToggle(false)
+  const [isOpen, toggle] = useToggle(false);
 
   return (
     <>

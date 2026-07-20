@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { AVATAR_URL } from "../../../data/constants";
+import AuthContext from "../../../context/auth";
 
 const Profile = () => {
+  const { user, login, logout } = useContext(AuthContext);
+  
   return (
     <div
       tabindex="1"
@@ -14,11 +18,12 @@ const Profile = () => {
         />
       </div>
       <div>
-        <p className="text-sm font-bold">محمدامین سعیدی راد</p>
+        <p className="text-sm font-bold">{user.username}</p>
         <p className="text-xs text-gray-600">مدیرعامل</p>
       </div>
     </div>
   );
 };
+
 
 export default Profile;
